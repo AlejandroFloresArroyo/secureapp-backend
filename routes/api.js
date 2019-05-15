@@ -3,24 +3,24 @@ const Router = Express.Router();
 const User = require("../models/users");
 
 
-Router.get("/users", (req, res) =>{
+Router.get("/users", (req, res, next) =>{
     res.send({type: 'GET'});
 });
 
 
-Router.post("/users", (req, res) =>{
+Router.post("/users", (req, res, next) =>{
     User.create(req.body).then((user) =>{
         res.send(user);
-    });
+    }).catch(next);
 });
 
 
-Router.put("/users/:id", (req, res) =>{
+Router.put("/users/:id", (req, res, next) =>{
     res.send({type: 'PUT'});
 });
 
 
-Router.delete("/users/:id", (req, res) =>{
+Router.delete("/users/:id", (req, res, next) =>{
     res.send({type: 'DELETE'});
 });
 
