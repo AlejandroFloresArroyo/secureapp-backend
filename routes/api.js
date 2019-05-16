@@ -4,7 +4,20 @@ const User = require("../models/users");
 
 
 Router.get("/users", (req, res, next) =>{
+    User.aggregate().near({
+        near : {
+            type: "Point",
+            coordinates: [parseFloat(req.query.lng), parseFloat(req.query.lat)]
+        },
+        maxDistance: 100000,
+        spherical: true,
+        distanceField: "dis"
+    }).then((users) => {
+        res.send(users);
+    }).catch(next);
 });
+
+
 
 
 Router.post("/users", (req, res, next) =>{
@@ -15,8 +28,8 @@ Router.post("/users", (req, res, next) =>{
 
 
 Router.put("/users/:id", (req, res, next) =>{
-    User.updateOne({_id: req.params.id}, req.body).then(()=>{
-        User.findOne({_id: req.params.id}).then((user) =>{
+    User.updateOne({facebookId: req.params.id}, req.body).then(()=>{
+        User.findOne({facebookId: req.params.id}).then((user) =>{
             res.send(user);
         })
     }).catch(next);

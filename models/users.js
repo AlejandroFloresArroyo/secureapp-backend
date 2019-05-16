@@ -1,6 +1,17 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const GeoSchema = new Schema({
+    type: {
+        type: String,
+        default: "Point"
+    },
+    coordinates: {
+        type: [Number],
+        index: "2dsphere"
+    }
+})
+
 const UserSchema = new Schema({
     facebookId:{
         type: String,
@@ -10,20 +21,9 @@ const UserSchema = new Schema({
         type: Boolean,
         default: false
     },
-    location: {
-        type: {
-            type: String,
-            enum: ['Point'],
-            required: true
-        },
-        coordinates: {
-            type : [Number],
-            required: true
-        }
-    }
+    geometry: GeoSchema
 });
 
-UserSchema.index({location: "2dsphere"});
 
 const User = mongoose.model('user', UserSchema);
 
