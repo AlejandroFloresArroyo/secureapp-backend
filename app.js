@@ -7,6 +7,7 @@ var app = Express();
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({extended: true}));
 app.use('/api', require('./routes/api'));
+app.use('/alarm', require('./routes/alarm'));
 app.use((err, req, res, next)=>{
     res.status(422).send({error: err.message})
 })
