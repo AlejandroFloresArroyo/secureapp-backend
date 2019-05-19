@@ -4,7 +4,8 @@
   "description": "Aplicacion para traer datos de mongo y enviarlas a la app en android",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "dependencies": {
     "async": "^1.4.2",
