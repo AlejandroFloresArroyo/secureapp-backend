@@ -4,6 +4,7 @@ const User = require("../models/users");
 
 
 Router.get("/users", (req, res, next) =>{
+    if (req.query.lng != null && req.query.lat != null){
     User.aggregate().near({
         near : {
             type: "Point",
@@ -15,6 +16,11 @@ Router.get("/users", (req, res, next) =>{
     }).then((users) => {
         res.send(users);
     }).catch(next);
+    }else{
+        User.find().then((user) => {
+            res.send(user);
+        }).catch(next);
+    }
 });
 
 
