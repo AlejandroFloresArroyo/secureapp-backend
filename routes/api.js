@@ -18,8 +18,6 @@ Router.get("/users", (req, res, next) =>{
 });
 
 
-
-
 Router.post("/users", (req, res, next) =>{
     User.create(req.body).then((user) =>{
         res.send(user);

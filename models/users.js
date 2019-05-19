@@ -21,6 +21,10 @@ const UserSchema = new Schema({
         type: Boolean,
         default: false
     },
+    needHelp: {
+        type: Boolean,
+        default: false
+    },
     geometry: GeoSchema
 });
 
