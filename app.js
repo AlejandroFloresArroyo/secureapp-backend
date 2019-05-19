@@ -14,6 +14,6 @@ app.use((err, req, res, next)=>{
 Mongoose.connect(uri, {useNewUrlParser: true});
 Mongoose.Promise = global.Promise;
 
-app.listen(3000, ()=>{
+app.listen((process.env.PORT || 3000), ()=>{
     console.log('ready')
 });
