@@ -10,7 +10,7 @@ Router.get("/users", (req, res, next) =>{
             type: "Point",
             coordinates: [parseFloat(req.query.lng), parseFloat(req.query.lat)]
         },
-        maxDistance: 100,
+        maxDistance: 10000000,
         spherical: true,
         distanceField: "dis"
     }).then((users) => {
